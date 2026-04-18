@@ -799,7 +799,12 @@
         height: 74px;
       }
 
-      /* FIX 1: Removed .category-grid from here so it stays 2-columns on tablet */
+      /* FIX 1: Explicitly force category-grid to 2 columns on tablet */
+      .category-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+      }
+
       .about-grid,
       .contact-grid {
         grid-template-columns: 1fr;
@@ -881,7 +886,7 @@
         display: none;
       }
 
-      /* FIX 4: Logo scaled down to fit next to links */
+      /* FIX 4: Shrink logo to fit on the same line as navigation */
       .brand {
         width: auto;
         justify-content: flex-start;
@@ -892,20 +897,20 @@
         height: 52px;
       }
 
-      /* FIX 2: Hero Banner adjusted to fit image better */
+      /* FIX 2: Banner Image adjusted to prevent cropping (contain vs cover) */
       .hero,
       .hero-content {
-        min-height: 420px;
+        min-height: 320px;
       }
 
       .hero-panel {
         padding: 22px;
       }
 
-      /* FIX 2: Cover and Center the Image */
       .hero-slide img {
+        object-fit: contain;
         object-position: center;
-        object-fit: cover;
+        background-color: #0c182a; 
       }
 
       .hero-dots {
@@ -1002,7 +1007,7 @@
         font-size: 13px;
         line-height: 1.5;
       }
-      
+
       /* FIX 3: Shrink and clean up WA Button */
       .product-card .btn-green {
         padding: 8px 12px;
