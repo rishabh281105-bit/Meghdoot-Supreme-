@@ -799,7 +799,6 @@
         height: 74px;
       }
 
-      /* FIX 1: Explicitly force category-grid to 2 columns on tablet */
       .category-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 12px;
@@ -824,6 +823,11 @@
     }
 
     @media (max-width: 640px) {
+      /* MOBILE FONT SIZE REDUCTIONS */
+      body {
+        font-size: 14px;
+      }
+
       .navbar {
         position: static;
       }
@@ -833,12 +837,11 @@
       }
 
       .topbar {
-        font-size: 12px;
+        font-size: 11px; /* Reduced */
         line-height: 1.5;
-        padding: 10px 12px;
+        padding: 8px 12px;
       }
 
-      /* FIX 4: Header Leveled on Mobile */
       .nav-inner {
         min-height: auto;
         padding: 12px 0 14px;
@@ -877,7 +880,7 @@
         border-radius: 0;
         background: transparent;
         min-width: auto;
-        font-size: 13px;
+        font-size: 12px; /* Reduced */
         color: #444;
         white-space: nowrap;
       }
@@ -886,7 +889,6 @@
         display: none;
       }
 
-      /* FIX 4: Shrink logo to fit on the same line as navigation */
       .brand {
         width: auto;
         justify-content: flex-start;
@@ -897,7 +899,6 @@
         height: 52px;
       }
 
-      /* FIX 2: Banner Image adjusted to prevent cropping (contain vs cover) */
       .hero,
       .hero-content {
         min-height: 320px;
@@ -905,6 +906,14 @@
 
       .hero-panel {
         padding: 22px;
+      }
+      
+      .hero-panel h1 {
+        font-size: clamp(28px, 6vw, 42px); /* Reduced */
+      }
+      
+      .hero-panel p {
+        font-size: 14px; /* Reduced */
       }
 
       .hero-slide img {
@@ -930,7 +939,7 @@
         min-width: 0;
         flex: 1 1 calc(50% - 5px);
         padding: 10px 12px;
-        font-size: 13px;
+        font-size: 12px; /* Reduced */
         border-radius: 12px;
         min-height: 42px;
       }
@@ -954,6 +963,7 @@
       .search-box input {
         padding: 13px 16px;
         border-radius: 14px;
+        font-size: 14px; /* Added control */
       }
 
       .chip-row {
@@ -973,7 +983,11 @@
       .chip {
         flex: 0 0 auto;
         padding: 9px 13px;
-        font-size: 13px;
+        font-size: 12px; /* Reduced */
+      }
+      
+      .results-text {
+        font-size: 13px; /* Reduced */
       }
 
       .values-grid,
@@ -982,7 +996,6 @@
         grid-template-columns: 1fr;
       }
 
-      /* FIX 1: Explicitly force category-grid to 2 columns on mobile */
       .category-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 12px;
@@ -999,19 +1012,22 @@
       }
 
       .product-title {
-        font-size: 15px;
+        font-size: 13px; /* Reduced */
         line-height: 1.35;
       }
 
       .product-desc {
-        font-size: 13px;
+        font-size: 12px; /* Reduced */
         line-height: 1.5;
       }
+      
+      .product-category {
+        font-size: 10px; /* Reduced */
+      }
 
-      /* FIX 3: Shrink and clean up WA Button */
       .product-card .btn-green {
         padding: 8px 12px;
-        font-size: 12px;
+        font-size: 12px; 
         border-radius: 12px;
         margin-top: auto;
       }
@@ -1021,24 +1037,51 @@
       }
 
       h2 {
-        font-size: clamp(26px, 7vw, 34px);
+        font-size: clamp(22px, 6vw, 28px); /* Reduced */
+      }
+      
+      .eyebrow {
+        font-size: 11px; /* Reduced */
       }
 
       .section-copy,
-      .story-card p {
+      .story-card p,
+      .contact-card p,
+      .contact-card a {
         max-width: 100%;
-        font-size: 15px;
-        line-height: 1.75;
+        font-size: 14px; /* Reduced */
+        line-height: 1.6;
+      }
+      
+      .values-grid h3 {
+        font-size: 15px; /* Reduced */
+      }
+      
+      .values-grid p {
+        font-size: 13px; /* Reduced */
       }
 
       .category-copy,
       .product-copy,
       .contact-card {
-        padding: 18px;
+        padding: 16px;
+      }
+      
+      .category-copy h3 {
+        font-size: 14px; /* Reduced */
+        margin-bottom: 6px;
+      }
+      
+      .category-copy p {
+        font-size: 11px; /* Reduced */
       }
 
       .contact-card {
         min-height: auto;
+      }
+      
+      .contact-card strong {
+        font-size: 13px; /* Reduced */
       }
 
       .map-card {
@@ -1050,16 +1093,23 @@
       }
 
       .footer-brand-logo {
-        width: 180px;
+        width: 160px; /* Reduced */
+      }
+      
+      .footer p, 
+      .footer-links a, 
+      .footer-contact-item, 
+      .footer-connect a {
+        font-size: 13px; /* Reduced */
       }
 
       .footer-bottom {
-        font-size: 13px;
+        font-size: 12px; /* Reduced */
         line-height: 1.6;
       }
 
       section {
-        padding: 64px 0;
+        padding: 54px 0;
       }
     }
   </style>
