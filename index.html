@@ -195,7 +195,7 @@
     }
 
     .hero-panel {
-      display: block; /* Desktop default */
+      display: none;
     }
 
     .hero-kicker {
@@ -781,15 +781,28 @@
     }
 
     @media (max-width: 900px) {
+      .nav-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        padding: 14px 0;
+      }
+
+      .nav-links {
+        width: 100%;
+        justify-content: flex-start;
+        gap: 12px;
+      }
+
+      .brand-mark {
+        width: 170px;
+        height: 74px;
+      }
+
+      /* FIX 1: Removed .category-grid from here so it stays 2-columns on tablet */
       .about-grid,
       .contact-grid {
         grid-template-columns: 1fr;
-      }
-      
-      /* Fix 1: Ensure Category Grid stays 2-columns even on tablet */
-      .category-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 12px;
       }
 
       .footer-inner {
@@ -807,111 +820,241 @@
 
     @media (max-width: 640px) {
       .navbar {
-        position: sticky;
-        top: 0;
+        position: static;
       }
 
       .container {
         width: min(var(--container), calc(100% - 24px));
       }
 
-      /* Fix 4: Headers leveled in one line */
-      .nav-inner {
-        min-height: 60px;
-        padding: 8px 0;
-        gap: 10px;
-        flex-direction: row; /* Horizontal */
-        justify-content: space-between;
-        align-items: center;
+      .topbar {
+        font-size: 12px;
+        line-height: 1.5;
+        padding: 10px 12px;
       }
 
+      /* FIX 4: Header Leveled on Mobile */
+      .nav-inner {
+        min-height: auto;
+        padding: 12px 0 14px;
+        gap: 10px;
+        align-items: center;
+        flex-direction: row;
+        justify-content: space-between;
+      }
+
+      .nav-links {
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        overflow-y: hidden;
+        width: 100%;
+        gap: 10px;
+        padding: 0 2px 4px;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+      }
+
+      .nav-links::-webkit-scrollbar {
+        display: none;
+      }
+
+      .nav-links a.link,
+      .nav-links .btn {
+        width: auto;
+        flex: 0 0 auto;
+        text-align: center;
+      }
+
+      .nav-links a.link {
+        padding: 6px 8px;
+        border: none;
+        border-radius: 0;
+        background: transparent;
+        min-width: auto;
+        font-size: 13px;
+        color: #444;
+        white-space: nowrap;
+      }
+
+      .nav-links .btn {
+        display: none;
+      }
+
+      /* FIX 4: Logo scaled down to fit next to links */
       .brand {
         width: auto;
         justify-content: flex-start;
       }
 
       .brand-mark {
-        width: 110px; /* Slimmer logo for horizontal fit */
-        height: 50px;
+        width: 120px;
+        height: 52px;
       }
 
-      .nav-links {
-        display: flex;
-        flex-direction: row;
-        width: auto;
-        flex: 1;
-        justify-content: flex-end;
-        overflow-x: auto;
-        gap: 8px;
-        scrollbar-width: none;
-      }
-
-      .nav-links::-webkit-scrollbar { display: none; }
-
-      .nav-links a.link {
-        font-size: 12px;
-        padding: 4px 6px;
-      }
-
-      /* Fix 2: Hero Banner fits properly */
+      /* FIX 2: Hero Banner adjusted to fit image better */
       .hero,
       .hero-content {
-        min-height: 380px; /* Improved height */
-      }
-
-      .hero-slide img {
-        object-fit: cover;
-        object-position: center; /* Better centering */
+        min-height: 420px;
       }
 
       .hero-panel {
-        display: none; /* Keep content hidden on mobile to prioritize banner image */
+        padding: 22px;
+      }
+
+      /* FIX 2: Cover and Center the Image */
+      .hero-slide img {
+        object-position: center;
+        object-fit: cover;
+      }
+
+      .hero-dots {
+        left: 16px;
+        bottom: 16px;
       }
 
       .hero-banner-actions {
         left: 12px;
         right: 12px;
-        bottom: 20px;
+        bottom: 40px;
         gap: 8px;
         justify-content: stretch;
       }
 
       .hero-banner-btn {
         min-width: 0;
-        flex: 1;
-        padding: 10px;
-        font-size: 12px;
-        border-radius: 10px;
+        flex: 1 1 calc(50% - 5px);
+        padding: 10px 12px;
+        font-size: 13px;
+        border-radius: 12px;
+        min-height: 42px;
       }
 
-      /* Fix 3: Smaller, cleaner WhatsApp Buttons */
-      .product-card .btn-green {
-        padding: 8px 12px;
-        font-size: 12px;
-        border-radius: 10px;
-        margin-top: 5px;
+      .hero-banner-btn span {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
 
-      /* General Mobile Cleanup */
-      .products-grid {
+      .products-bar {
+        display: block;
+        margin-bottom: 18px;
+      }
+
+      .search-box {
+        min-width: 0;
+        width: 100%;
+      }
+
+      .search-box input {
+        padding: 13px 16px;
+        border-radius: 14px;
+      }
+
+      .chip-row {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        overflow-y: hidden;
+        padding: 2px 2px 8px;
+        margin-bottom: 20px;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+      }
+
+      .chip-row::-webkit-scrollbar {
+        display: none;
+      }
+
+      .chip {
+        flex: 0 0 auto;
+        padding: 9px 13px;
+        font-size: 13px;
+      }
+
+      .values-grid,
+      .contact-stack,
+      .footer-inner {
+        grid-template-columns: 1fr;
+      }
+
+      /* FIX 1: Explicitly force category-grid to 2 columns on mobile */
+      .category-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 12px;
       }
 
-      .category-copy h3 {
-        font-size: 16px;
+      .products-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
       }
 
-      .category-copy p {
-        font-size: 11px;
-      }
-
-      .category-copy {
+      .product-copy {
         padding: 12px;
+        gap: 8px;
+      }
+
+      .product-title {
+        font-size: 15px;
+        line-height: 1.35;
+      }
+
+      .product-desc {
+        font-size: 13px;
+        line-height: 1.5;
+      }
+      
+      /* FIX 3: Shrink and clean up WA Button */
+      .product-card .btn-green {
+        padding: 8px 12px;
+        font-size: 12px;
+        border-radius: 12px;
+        margin-top: auto;
+      }
+
+      .section-head {
+        margin-bottom: 24px;
+      }
+
+      h2 {
+        font-size: clamp(26px, 7vw, 34px);
+      }
+
+      .section-copy,
+      .story-card p {
+        max-width: 100%;
+        font-size: 15px;
+        line-height: 1.75;
+      }
+
+      .category-copy,
+      .product-copy,
+      .contact-card {
+        padding: 18px;
+      }
+
+      .contact-card {
+        min-height: auto;
+      }
+
+      .map-card {
+        min-height: 300px;
+      }
+
+      .footer {
+        padding: 42px 0 24px;
+      }
+
+      .footer-brand-logo {
+        width: 180px;
+      }
+
+      .footer-bottom {
+        font-size: 13px;
+        line-height: 1.6;
       }
 
       section {
-        padding: 48px 0;
+        padding: 64px 0;
       }
     }
   </style>
@@ -931,6 +1074,8 @@
         <a class="link" href="#about">About</a>
         <a class="link" href="#products">Products</a>
         <a class="link" href="#contact">Contact</a>
+        <a class="btn btn-orange" href="tel:9721133333">Call 9721133333</a>
+        <a class="btn btn-green" href="https://wa.me/919721133333" target="_blank" rel="noreferrer">WhatsApp</a>
       </nav>
     </div>
   </header>
@@ -953,27 +1098,106 @@
       <div class="hero-panel">
         <span class="hero-kicker">Meghdoot Supreme + Anchor + Arkay Lite</span>
         <h1>Trusted electrical products for homes, shops, and everyday life.</h1>
-        <p>From wires and fans to irons, mixer grinders, sockets, and multiplugs.</p>
+        <p>
+          From wires and fans to irons, mixer grinders, sockets, and multiplugs, Bhagwan Electric Company brings
+          dependable products with honest guidance and fair prices.
+        </p>
         <div class="hero-actions">
           <a class="btn btn-orange" href="#products">Browse Products</a>
+          <a class="btn btn-green" href="https://wa.me/919721133333" target="_blank" rel="noreferrer">WhatsApp for Price</a>
         </div>
       </div>
     </div>
     <div class="hero-banner-actions">
       <a class="hero-banner-btn whatsapp" href="https://wa.me/919721133333" target="_blank" rel="noreferrer">
-        <svg viewBox="0 0 24 24"><path d="M20 11.5a8 8 0 0 1-11.8 7l-4.2 1 1.1-4A8 8 0 1 1 20 11.5z"></path><path d="M9.5 8.8c.3-.7.7-.7 1-.7h.4c.1 0 .4.1.6.5l.7 1.6c.1.2.1.5 0 .7l-.3.5c-.1.1-.2.3-.1.5.3.6.9 1.2 1.5 1.5.2.1.4 0 .5-.1l.5-.3c.2-.1.5-.1.7 0l1.6.7c.4.2.5.5.5.6v.4c0 .3 0 .7-.7 1-.7.3-2.3.3-4.3-1.7-1.9-1.9-2-3.6-1.6-4.2z"></path></svg>
-        <span>WhatsApp</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M20 11.5a8 8 0 0 1-11.8 7l-4.2 1 1.1-4A8 8 0 1 1 20 11.5z"></path>
+          <path d="M9.5 8.8c.3-.7.7-.7 1-.7h.4c.1 0 .4.1.6.5l.7 1.6c.1.2.1.5 0 .7l-.3.5c-.1.1-.2.3-.1.5.3.6.9 1.2 1.5 1.5.2.1.4 0 .5-.1l.5-.3c.2-.1.5-.1.7 0l1.6.7c.4.2.5.5.5.6v.4c0 .3 0 .7-.7 1-.7.3-2.3.3-4.3-1.7-1.9-1.9-2-3.6-1.6-4.2z"></path>
+        </svg>
+        <span>WhatsApp for Price</span>
       </a>
       <a class="hero-banner-btn instagram" href="https://www.instagram.com/meghdootsupreme_electricals" target="_blank" rel="noreferrer">
-        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="0.8" fill="currentColor"></circle></svg>
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <rect x="3" y="3" width="18" height="18" rx="5"></rect>
+          <circle cx="12" cy="12" r="4"></circle>
+          <circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none"></circle>
+        </svg>
         <span>Instagram</span>
       </a>
     </div>
     <div class="hero-dots">
-      <button class="hero-dot active" type="button"></button>
-      <button class="hero-dot" type="button"></button>
-      <button class="hero-dot" type="button"></button>
-      <button class="hero-dot" type="button"></button>
+      <button class="hero-dot active" type="button" aria-label="Slide 1"></button>
+      <button class="hero-dot" type="button" aria-label="Slide 2"></button>
+      <button class="hero-dot" type="button" aria-label="Slide 3"></button>
+      <button class="hero-dot" type="button" aria-label="Slide 4"></button>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Our Story</span>
+        <h2>Five decades. One promise.</h2>
+        <p class="section-copy">
+          Bhagwan Electric Company has served Lucknow since the 1970s with a simple belief:
+          stock quality electrical goods, give honest advice, and treat every customer with care.
+        </p>
+      </div>
+      <div class="about-grid">
+        <article class="story-card">
+          <p>
+            In the 1970s, Laxman Prasad opened a small electrical shop in Lucknow's old city.
+            The goal was clear from day one: dependable products, fair prices, and service people could trust.
+          </p>
+          <p>
+            That approach still drives the store today. Whether you need wires, fans, mixer grinders, irons,
+            sockets, or daily electrical essentials, the focus remains the same: practical recommendations
+            and reliable brands.
+          </p>
+          <a class="btn btn-orange" href="#contact">Visit the Store</a>
+        </article>
+        <div class="values-grid">
+          <article>
+            <div class="value-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+            </div>
+            <h3>Quality Products</h3>
+            <p>ISI certified. No shortcuts.</p>
+          </article>
+          <article>
+            <div class="value-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="M3 10.5 12 3l9 7.5"></path>
+                <path d="M5 9.5V21h14V9.5"></path>
+                <path d="M10 21v-7h4v7"></path>
+              </svg>
+            </div>
+            <h3>50+ Years Local</h3>
+            <p>Serving Lucknow since 1970.</p>
+          </article>
+          <article>
+            <div class="value-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="M12 3l7 3v5c0 5-3.5 8.5-7 10-3.5-1.5-7-5-7-10V6l7-3z"></path>
+              </svg>
+            </div>
+            <h3>Honest Service</h3>
+            <p>Fair prices. No upselling.</p>
+          </article>
+          <article>
+            <div class="value-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8z"></path>
+                <circle cx="7.5" cy="7.5" r="1"></circle>
+              </svg>
+            </div>
+            <h3>Best Prices</h3>
+            <p>Competitive rates, always.</p>
+          </article>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -982,23 +1206,44 @@
       <div class="section-head">
         <span class="eyebrow">Shop by Category</span>
         <h2>Explore the range</h2>
+        <p class="section-copy">Tap a category below to jump straight into the relevant products.</p>
       </div>
       <div class="category-grid">
         <article class="category-card" data-category-target="Wires">
-          <div class="category-image"><img src="./category-wires.jpg" alt="Wires" onerror="setFallbackImage(this, 'Wires', '#0c1f3d', '#1a4a80')" /></div>
-          <div class="category-copy"><h3>Wires</h3><p>ISI-certified options.</p></div>
+          <div class="category-image">
+            <img src="./category-wires.jpg" alt="Wires" onerror="setFallbackImage(this, 'Wires', '#0c1f3d', '#1a4a80')" />
+          </div>
+          <div class="category-copy">
+            <h3>Wires</h3>
+            <p>ISI-certified options for household, shop, and heavy-load wiring needs.</p>
+          </div>
         </article>
         <article class="category-card" data-category-target="Fans">
-          <div class="category-image"><img src="./category-fans.jpg" alt="Fans" onerror="setFallbackImage(this, 'Fans', '#3d1800', '#974f02')" /></div>
-          <div class="category-copy"><h3>Fans</h3><p>Cooling comfort.</p></div>
+          <div class="category-image">
+            <img src="./category-fans.jpg" alt="Fans" onerror="setFallbackImage(this, 'Fans', '#3d1800', '#974f02')" />
+          </div>
+          <div class="category-copy">
+            <h3>Fans</h3>
+            <p>Cooling comfort across table fans, pedestal fans, ceiling fans, and exhaust fans.</p>
+          </div>
         </article>
         <article class="category-card" data-category-target="Mixer Grinders">
-          <div class="category-image"><img src="./category-mixer.jpg" alt="Mixers" onerror="setFallbackImage(this, 'Mixers', '#1a2a3d', '#2a5a80')" /></div>
-          <div class="category-copy"><h3>Mixers</h3><p>Kitchen essentials.</p></div>
+          <div class="category-image">
+            <img src="./category-mixer.jpg" alt="Mixer grinders" onerror="setFallbackImage(this, 'Mixer Grinders', '#1a2a3d', '#2a5a80')" />
+          </div>
+          <div class="category-copy">
+            <h3>Mixer Grinders</h3>
+            <p>Daily-use kitchen workhorses built for grinding, mixing, and blending.</p>
+          </div>
         </article>
         <article class="category-card" data-category-target="Iron Boxes">
-          <div class="category-image"><img src="./category-iron.jpg" alt="Irons" onerror="setFallbackImage(this, 'Irons', '#3a2600', '#976519')" /></div>
-          <div class="category-copy"><h3>Irons</h3><p>Daily pressing.</p></div>
+          <div class="category-image">
+            <img src="./category-iron.jpg" alt="Iron boxes" onerror="setFallbackImage(this, 'Iron Boxes', '#3a2600', '#976519')" />
+          </div>
+          <div class="category-copy">
+            <h3>Iron Boxes</h3>
+            <p>Everyday and heavy-duty pressing solutions with durable soleplates and control.</p>
+          </div>
         </article>
       </div>
     </div>
@@ -1006,66 +1251,350 @@
 
   <section id="products">
     <div class="container">
-      <div class="products-bar">
-        <div class="search-box"><input id="searchInput" type="text" placeholder="Search products..." /></div>
+      <div class="section-head">
+        <span class="eyebrow">Products</span>
+        <h2>Browse by need or search directly</h2>
+        <p class="section-copy">Use the search bar or filter by category. Every product links directly to WhatsApp for pricing.</p>
       </div>
+
+      <div class="products-bar">
+        <div class="search-box">
+          <input id="searchInput" type="text" placeholder="Search products..." />
+        </div>
+      </div>
+
       <div class="chip-row" id="categoryChips"></div>
       <div class="results-text" id="resultsText"></div>
       <div class="products-grid" id="productsGrid"></div>
     </div>
   </section>
 
+  <section class="contact-wrap" id="contact">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Contact</span>
+        <h2>Visit the store</h2>
+        <p class="section-copy">Walk in anytime between 11 AM and 9 PM, except Thursdays, or message directly for product pricing.</p>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-stack">
+          <article class="contact-card">
+            <div class="contact-card-top">
+              <span class="contact-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 1 1 18 0z"></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+              </span>
+              <strong>Address</strong>
+            </div>
+            <p>92, Old RTO Compound, G.B. Marg, Latouche Rd, Naka Hindola, Lucknow 226018</p>
+          </article>
+          <article class="contact-card">
+            <div class="contact-card-top">
+              <span class="contact-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6.1 6.1l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 1.9z"></path>
+                </svg>
+              </span>
+              <strong>Call</strong>
+            </div>
+            <a href="tel:9721133333">9721133333</a>
+          </article>
+          <article class="contact-card">
+            <div class="contact-card-top">
+              <span class="contact-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <circle cx="12" cy="12" r="9"></circle>
+                  <path d="M12 7v5l3 2"></path>
+                </svg>
+              </span>
+              <strong>Hours</strong>
+            </div>
+            <p>11 AM - 9 PM<br />Closed Thursdays</p>
+          </article>
+          <article class="contact-card">
+            <div class="contact-card-top">
+              <span class="contact-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <path d="M20 11.5a8 8 0 0 1-11.8 7l-4.2 1 1.1-4A8 8 0 1 1 20 11.5z"></path>
+                  <path d="M9.5 8.8c.3-.7.7-.7 1-.7h.4c.1 0 .4.1.6.5l.7 1.6c.1.2.1.5 0 .7l-.3.5c-.1.1-.2.3-.1.5.3.6.9 1.2 1.5 1.5.2.1.4 0 .5-.1l.5-.3c.2-.1.5-.1.7 0l1.6.7c.4.2.5.5.5.6v.4c0 .3 0 .7-.7 1-.7.3-2.3.3-4.3-1.7-1.9-1.9-2-3.6-1.6-4.2z"></path>
+                </svg>
+              </span>
+              <strong>WhatsApp</strong>
+            </div>
+            <a href="https://wa.me/919721133333" target="_blank" rel="noreferrer">Message us instantly</a>
+          </article>
+          <article class="contact-card">
+            <div class="contact-card-top">
+              <span class="contact-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <rect x="3" y="3" width="18" height="18" rx="5"></rect>
+                  <circle cx="12" cy="12" r="4"></circle>
+                  <circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none"></circle>
+                </svg>
+              </span>
+              <strong>Instagram</strong>
+            </div>
+            <a href="https://www.instagram.com/meghdootsupreme_electricals" target="_blank" rel="noreferrer">@meghdootsupreme_electricals</a>
+          </article>
+          <article class="contact-card">
+            <div class="contact-card-top">
+              <span class="contact-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <path d="M12 19V5"></path>
+                  <path d="M5 12l7-7 7 7"></path>
+                </svg>
+              </span>
+              <strong>Directions</strong>
+            </div>
+            <a class="btn btn-orange" href="https://maps.google.com/?q=92+Old+RTO+Compound+Latouche+Road+Lucknow+226018" target="_blank" rel="noreferrer">Get Directions</a>
+          </article>
+        </div>
+        <div class="map-card">
+          <iframe
+            title="Store Location"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3560.0!2d80.9193!3d26.8466!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399bfd05ad27a7a1%3A0x50b49f40a0dbb5dc!2sLatouche%20Rd%2C%20Lucknow%2C%20Uttar%20Pradesh!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            allowfullscreen
+          ></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>
+        <img class="footer-brand-logo" src="./nav-logo.png" alt="Meghdoot Supreme" onerror="setFallbackImage(this, 'Meghdoot Supreme', '#f47d05', '#975209')" />
+        <p>Wired for Quality, Built on Trust.</p>
+      </div>
+      <div>
+        <div class="footer-title">Quick Links</div>
+        <div class="footer-links">
+          <a href="#home">Home</a>
+          <a href="#products">Products</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-title">Contact</div>
+        <div class="footer-contact-list">
+          <div class="footer-contact-item">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6.1 6.1l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 1.9z"></path>
+            </svg>
+            <a href="tel:9721133333">9721133333</a>
+          </div>
+          <div class="footer-contact-item">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 1 1 18 0z"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+            <span>Lucknow, Uttar Pradesh</span>
+          </div>
+          <div class="footer-contact-item">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="12" cy="12" r="9"></circle>
+              <path d="M12 7v5l3 2"></path>
+            </svg>
+            <span>11 AM - 9 PM, ex. Thursdays</span>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="footer-title">Connect</div>
+        <div class="footer-connect">
+          <a class="wa" href="https://wa.me/919721133333" target="_blank" rel="noreferrer">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M20 11.5a8 8 0 0 1-11.8 7l-4.2 1 1.1-4A8 8 0 1 1 20 11.5z"></path>
+              <path d="M9.5 8.8c.3-.7.7-.7 1-.7h.4c.1 0 .4.1.6.5l.7 1.6c.1.2.1.5 0 .7l-.3.5c-.1.1-.2.3-.1.5.3.6.9 1.2 1.5 1.5.2.1.4 0 .5-.1l.5-.3c.2-.1.5-.1.7 0l1.6.7c.4.2.5.5.5.6v.4c0 .3 0 .7-.7 1-.7.3-2.3.3-4.3-1.7-1.9-1.9-2-3.6-1.6-4.2z"></path>
+            </svg>
+            <span>WhatsApp</span>
+          </a>
+          <a class="ig" href="https://www.instagram.com/meghdootsupreme_electricals" target="_blank" rel="noreferrer">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="3" y="3" width="18" height="18" rx="5"></rect>
+              <circle cx="12" cy="12" r="4"></circle>
+              <circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none"></circle>
+            </svg>
+            <span>Instagram</span>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="container footer-bottom">© 2026 Meghdoot Supreme. All rights reserved.</div>
+  </footer>
+
   <script>
-    // JS Logic (Product array, render functions, hero interval) 
-    // remains identical to your working file to preserve functionality.
     const PRODUCTS = [
-      { name: "1.0mm Wire", cat: "Wires", badge: "", desc: "PVC coated, flame retardant.", img: "./product-wire.jpg", fallback: ["Wire", "#0c1f3d", "#1a4a80"] },
-      { name: "1.5mm Wire", cat: "Wires", badge: "", desc: "Standard household wiring.", img: "./product-wire.jpg", fallback: ["Wire", "#0c1f3d", "#1a4a80"] },
-      { name: "2.5mm Wire", cat: "Wires", badge: "Bestseller", desc: "Heavy-duty choice.", img: "./product-wire.jpg", fallback: ["Wire", "#0c1f3d", "#1a4a80"] },
-      { name: "Table Fan", cat: "Fans", badge: "Popular", desc: "Compact tabletop cooling.", img: "./product-fan.jpg", fallback: ["Fan", "#3d1800", "#974f02"] }
-      // ... Add more as needed
+      { name: "1.0mm Wire", cat: "Wires", badge: "", desc: "PVC coated, flame retardant, durable single-core.", img: "./product-wire.jpg", fallback: ["Wire", "#0c1f3d", "#1a4a80"] },
+      { name: "1.5mm Wire", cat: "Wires", badge: "", desc: "Standard household wiring, flexible and reliable.", img: "./product-wire.jpg", fallback: ["Wire", "#0c1f3d", "#1a4a80"] },
+      { name: "2.5mm Wire", cat: "Wires", badge: "Bestseller", desc: "Heavy-duty, popular choice for home wiring.", img: "./product-wire.jpg", fallback: ["Wire", "#0c1f3d", "#1a4a80"] },
+      { name: "4.0mm Wire", cat: "Wires", badge: "", desc: "Industrial grade wire for higher load capacity.", img: "./product-wire.jpg", fallback: ["Wire", "#0c1f3d", "#1a4a80"] },
+      { name: "Table Fan 400mm", cat: "Fans", badge: "Popular", desc: "Compact tabletop cooling with 3-speed control.", img: "./product-fan.jpg", fallback: ["Fan", "#3d1800", "#974f02"] },
+      { name: "Ceiling Fan 1200mm", cat: "Fans", badge: "", desc: "High airflow with quiet operation and broad coverage.", img: "./product-fan.jpg", fallback: ["Fan", "#3d1800", "#974f02"] },
+      { name: "Ceiling Fan 900mm", cat: "Fans", badge: "", desc: "Standard energy-efficient ceiling fan for daily use.", img: "./product-fan.jpg", fallback: ["Fan", "#3d1800", "#974f02"] },
+      { name: "Pedestal Fan 450mm", cat: "Fans", badge: "", desc: "Adjustable height, wide oscillation, and strong airflow.", img: "./product-fan.jpg", fallback: ["Fan", "#3d1800", "#974f02"] },
+      { name: "Exhaust Fan 300mm", cat: "Fans", badge: "", desc: "Kitchen and bathroom ventilation with low noise.", img: "./product-fan.jpg", fallback: ["Fan", "#3d1800", "#974f02"] },
+      { name: "Mixer Grinder 750W", cat: "Mixer Grinders", badge: "Bestseller", desc: "High-speed grinding with durable copper motor.", img: "./product-mixer.jpg", fallback: ["Mixer Grinder", "#1a2a3d", "#2a5a80"] },
+      { name: "Mixer Grinder 500W", cat: "Mixer Grinders", badge: "", desc: "Compact design for everyday kitchen tasks.", img: "./product-mixer.jpg", fallback: ["Mixer Grinder", "#1a2a3d", "#2a5a80"] },
+      { name: "Automatic Iron 750W", cat: "Iron Boxes", badge: "Popular", desc: "Thermostat-controlled pressing with safety focus.", img: "./product-iron.jpg", fallback: ["Iron Box", "#3a2600", "#976519"] },
+      { name: "Heavy Iron 1000W", cat: "Iron Boxes", badge: "", desc: "Professional-grade pressing power and durability.", img: "./product-iron.jpg", fallback: ["Iron Box", "#3a2600", "#976519"] },
+      { name: "4-Way Multiplug", cat: "Multiplug", badge: "", desc: "Compact multiplug with surge-friendly everyday use.", img: "./product-multiplug.jpg", fallback: ["Multiplug", "#1a093a", "#4a2880"] },
+      { name: "6-Way Extension", cat: "Multiplug", badge: "", desc: "Long cable extension board with master switch.", img: "./product-multiplug.jpg", fallback: ["Multiplug", "#1a093a", "#4a2880"] },
+      { name: "Modular Socket 6A", cat: "Sockets", badge: "", desc: "Slim-profile socket with safe-touch design.", img: "./product-socket.jpg", fallback: ["Socket", "#0a2e18", "#1a5c35"] },
+      { name: "Modular Socket 16A", cat: "Sockets", badge: "", desc: "High-amperage socket for heavier appliances.", img: "./product-socket.jpg", fallback: ["Socket", "#0a2e18", "#1a5c35"] },
+      { name: "2-Pin Top 6A", cat: "2-Pin Tops", badge: "", desc: "Standard household connector with durable plastic body.", img: "./product-2pin.jpg", fallback: ["2-Pin Top", "#2e1808", "#5c3818"] },
+      { name: "2-Pin Top 16A", cat: "2-Pin Tops", badge: "", desc: "Heavy-duty connector for stronger load needs.", img: "./product-2pin.jpg", fallback: ["2-Pin Top", "#2e1808", "#5c3818"] },
+      { name: "Fan Capacitor 2.5 MFD", cat: "Fan Capacitors", badge: "", desc: "Compatible with most everyday fan models.", img: "./product-capacitor.jpg", fallback: ["Capacitor", "#2a0a2e", "#581858"] },
+      { name: "Fan Capacitor 3.15 MFD", cat: "Fan Capacitors", badge: "", desc: "High-performance capacitor for long-term fan use.", img: "./product-capacitor.jpg", fallback: ["Capacitor", "#2a0a2e", "#581858"] }
     ];
 
-    const CATEGORIES = ["All", "Wires", "Fans", "Mixer Grinders", "Iron Boxes"];
+    const CATEGORIES = ["All", "Wires", "Fans", "Mixer Grinders", "Iron Boxes", "Multiplug", "Sockets", "2-Pin Tops", "Fan Capacitors"];
+
+    function svgFallback(label, colorA, colorB) {
+      const svg =
+        '<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">' +
+        '<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1">' +
+        '<stop offset="0%" stop-color="' + colorA + '"/>' +
+        '<stop offset="100%" stop-color="' + colorB + '"/>' +
+        '</linearGradient></defs>' +
+        '<rect width="800" height="600" fill="url(#g)"/>' +
+        '<text x="400" y="280" fill="white" font-family="Segoe UI, Arial" font-size="42" font-weight="700" text-anchor="middle">' + label + '</text>' +
+        '<text x="400" y="340" fill="rgba(255,255,255,0.82)" font-family="Segoe UI, Arial" font-size="18" text-anchor="middle">Add your local image in the  folder</text>' +
+        '</svg>';
+      return "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(svg);
+    }
 
     function setFallbackImage(img, label, colorA, colorB) {
       img.onerror = null;
-      const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600"><rect width="800" height="600" fill="${colorA}"/><text x="400" y="300" fill="white" font-size="50" text-anchor="middle" font-family="Arial">${label}</text></svg>`;
-      img.src = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(svg);
+      img.src = svgFallback(label, colorA, colorB);
     }
+
+    window.setFallbackImage = setFallbackImage;
 
     let activeCategory = "All";
     let activeQuery = "";
 
-    function renderProducts() {
-      const items = PRODUCTS.filter(p => (activeCategory === "All" || p.cat === activeCategory) && p.name.toLowerCase().includes(activeQuery.toLowerCase()));
-      const grid = document.getElementById("productsGrid");
-      grid.innerHTML = items.map(p => `
-        <article class="product-card">
-          <div class="product-image"><img src="${p.img}" alt="${p.name}" onerror="setFallbackImage(this, '${p.fallback[0]}', '${p.fallback[1]}', '${p.fallback[2]}')"></div>
-          <div class="product-copy">
-            <div class="product-category">${p.cat}</div>
-            <div class="product-title">${p.name}</div>
-            <a class="btn btn-green" href="https://wa.me/919721133333?text=Interested in ${p.name}" target="_blank">WhatsApp for Price</a>
-          </div>
-        </article>
-      `).join('');
+    const productsGrid = document.getElementById("productsGrid");
+    const categoryChips = document.getElementById("categoryChips");
+    const searchInput = document.getElementById("searchInput");
+    const resultsText = document.getElementById("resultsText");
+
+    function renderChips() {
+      categoryChips.innerHTML = "";
+      CATEGORIES.forEach(function (category) {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "chip" + (category === activeCategory ? " active" : "");
+        button.textContent = category;
+        button.addEventListener("click", function () {
+          activeCategory = category;
+          renderChips();
+          renderProducts();
+        });
+        categoryChips.appendChild(button);
+      });
     }
 
-    document.getElementById("searchInput").addEventListener("input", (e) => {
-      activeQuery = e.target.value;
+    function filteredProducts() {
+      return PRODUCTS.filter(function (product) {
+        const categoryMatch = activeCategory === "All" || product.cat === activeCategory;
+        const q = activeQuery.trim().toLowerCase();
+        const queryMatch =
+          !q ||
+          product.name.toLowerCase().indexOf(q) !== -1 ||
+          product.cat.toLowerCase().indexOf(q) !== -1 ||
+          product.desc.toLowerCase().indexOf(q) !== -1;
+        return categoryMatch && queryMatch;
+      });
+    }
+
+    function renderProducts() {
+      const items = filteredProducts();
+      resultsText.textContent = items.length + " product" + (items.length === 1 ? "" : "s") + " shown";
+      productsGrid.innerHTML = "";
+
+      if (!items.length) {
+        const empty = document.createElement("div");
+        empty.className = "empty-state";
+        empty.textContent = "No matching products found. Try another search or category.";
+        productsGrid.appendChild(empty);
+        return;
+      }
+
+      items.forEach(function (product) {
+        const card = document.createElement("article");
+        card.className = "product-card";
+
+        const badge = product.badge ? '<span class="badge">' + product.badge + "</span>" : "";
+        const waText = encodeURIComponent("Hi, I'm interested in " + product.name);
+
+        card.innerHTML =
+          '<div class="product-image">' +
+            '<img src="' + product.img + '" alt="' + product.name + '" />' +
+          "</div>" +
+          '<div class="product-copy">' +
+            '<div class="product-category">' + product.cat + "</div>" +
+            badge +
+            '<div class="product-title">' + product.name + "</div>" +
+            '<div class="product-desc">' + product.desc + "</div>" +
+            '<a class="btn btn-green" href="https://wa.me/919721133333?text=' + waText + '" target="_blank" rel="noreferrer">WhatsApp for Price</a>' +
+          "</div>";
+
+        const image = card.querySelector("img");
+        image.onerror = function () {
+          setFallbackImage(image, product.fallback[0], product.fallback[1], product.fallback[2]);
+        };
+
+        productsGrid.appendChild(card);
+      });
+    }
+
+    searchInput.addEventListener("input", function () {
+      activeQuery = searchInput.value;
       renderProducts();
     });
 
-    // Auto-init hero slider
-    let index = 0;
-    setInterval(() => {
-      const slides = document.querySelectorAll('.hero-slide');
-      slides[index].classList.remove('active');
-      index = (index + 1) % slides.length;
-      slides[index].classList.add('active');
-    }, 4000);
+    document.querySelectorAll("[data-category-target]").forEach(function (card) {
+      card.addEventListener("click", function () {
+        activeCategory = card.getAttribute("data-category-target");
+        renderChips();
+        renderProducts();
+        document.getElementById("products").scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    });
 
+    (function initHero() {
+      const slides = Array.prototype.slice.call(document.querySelectorAll(".hero-slide"));
+      const dots = Array.prototype.slice.call(document.querySelectorAll(".hero-dot"));
+      let index = 0;
+
+      function show(nextIndex) {
+        index = nextIndex;
+        slides.forEach(function (slide, i) {
+          slide.classList.toggle("active", i === index);
+        });
+        dots.forEach(function (dot, i) {
+          dot.classList.toggle("active", i === index);
+        });
+      }
+
+      dots.forEach(function (dot, i) {
+        dot.addEventListener("click", function () {
+          show(i);
+        });
+      });
+
+      setInterval(function () {
+        show((index + 1) % slides.length);
+      }, 4500);
+    })();
+
+    renderChips();
     renderProducts();
   </script>
 </body>
